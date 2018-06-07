@@ -13,7 +13,7 @@ class CryptTools:
         self.mail = "tal.ziv.w@gmail.com"
 
     @staticmethod
-    def generatekeypair(passphrase, key_size=2048, debug=False):
+    def generatekeypair(passphrase: str, key_size: int = 2048, debug: bool = False) -> dict:
         """Decrypt RSA encrypted base64 encoded data which is usful for web services.
 
             Args:
@@ -34,7 +34,7 @@ class CryptTools:
         return key_data
 
     @staticmethod
-    def encrypt_with_rsa_key(publickey, data, debug=False):
+    def encrypt_with_rsa_key(publickey: bytes, data: bytes, debug: bool = False) -> bytes:
         """Decrypt RSA encrypted base64 encoded data which is usful for web services.
 
             Args:
@@ -59,7 +59,7 @@ class CryptTools:
         return encryptedata
 
     @staticmethod
-    def decrypt_with_rsa_key(private_key, data, debug=False):
+    def decrypt_with_rsa_key(private_key: bytes, data: bytes, debug: bool = False) -> bytes:
         """Decrypt RSA encrypted encoded data.
 
             Args:
@@ -89,7 +89,7 @@ class CryptTools:
         return decrypted_data
 
     @staticmethod
-    def encrypt_with_rsa_key_b64(b64_encoded_public_key, b64_data, debug=False):
+    def encrypt_with_rsa_key_b64(b64_encoded_public_key: bytes, b64_data: bytes, debug: bytes = False) -> bytes:
         """Decrypt RSA encrypted base64 encoded data which is usful for web services.
             Args:
                 b64_encoded_public_key = a RSA public key object encoded in base64.
@@ -113,7 +113,7 @@ class CryptTools:
         return base64.b64encode(encryptedata)
 
     @staticmethod
-    def decrypte_with_rsa_key_b64(b64_encoded_private_key, passphrase, data, debug=False):
+    def decrypte_with_rsa_key_b64(b64_encoded_private_key: bytes, passphrase: str, b64_data: bytes, debug: bool = False) -> bytes:
         """Decrypt RSA encrypted data which is encoded in base64.
             Args:
                 private_key = a RSA public key object.
@@ -124,7 +124,7 @@ class CryptTools:
             Return: RSA decrypted data encoded with base64.
         """
         private_key = RSA.import_key(base64.b64decode(b64_encoded_private_key), passphrase=passphrase)
-        decoded = base64.b64decode(data)
+        decoded = base64.b64decode(b64_data)
         if debug:
             print('Decoded base64 data: ' + str(decoded))
         tempio = io.BytesIO(decoded)
